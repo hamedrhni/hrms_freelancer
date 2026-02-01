@@ -1,11 +1,13 @@
 # HRMS Freelancer Extension
 
-[![CI Tests](https://github.com/YOUR_USERNAME/hrms_freelancer/workflows/CI%20Tests/badge.svg)](https://github.com/YOUR_USERNAME/hrms_freelancer/actions)
+[![CI Tests](https://github.com/hamedrhni/hrms_freelancer/workflows/CI%20Tests/badge.svg)](https://github.com/hamedrhni/hrms_freelancer/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Frappe v15](https://img.shields.io/badge/Frappe-v15-orange.svg)](https://frappeframework.com/)
 
 A comprehensive Frappe Framework extension for managing freelancers, independent contractors, and self-employed workers alongside traditional employees.
+
+![HRMS Freelancer Screenshot](screen.jpg)
 
 ## 🌟 Features
 
@@ -52,7 +54,7 @@ A comprehensive Frappe Framework extension for managing freelancers, independent
 cd frappe-bench
 
 # Get the app
-bench get-app https://github.com/YOUR_USERNAME/hrms_freelancer
+bench get-app https://github.com/hamedrhni/hrms_freelancer
 
 # Install on your site
 bench --site your-site.local install-app hrms_freelancer
@@ -65,7 +67,7 @@ bench --site your-site.local migrate
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/hrms_freelancer.git
+git clone https://github.com/hamedrhni/hrms_freelancer.git
 cd hrms_freelancer
 
 # Copy environment template
@@ -201,7 +203,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/hrms_freelancer.git
+git clone https://github.com/hamedrhni/hrms_freelancer.git
 cd hrms_freelancer
 
 # Set up development environment with Docker
@@ -209,7 +211,7 @@ cp .env.example .env
 docker-compose up -d
 
 # Or with Bench
-bench get-app https://github.com/YOUR_USERNAME/hrms_freelancer
+bench get-app https://github.com/hamedrhni/hrms_freelancer
 bench --site test_site install-app hrms_freelancer
 
 # Run tests
@@ -236,9 +238,9 @@ For security vulnerabilities, please email security@example.com instead of using
 
 ## 📞 Support & Community
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/hrms_freelancer/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/hrms_freelancer/discussions)
-- **Documentation**: See docs/ directory
+- **Issues**: [GitHub Issues](https://github.com/hamedrhni/hrms_freelancer/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/hamedrhni/hrms_freelancer/discussions)
+- **Documentation**: [Installation Guide](RUNNING_LOCALLY.md)
 
 ## 🌟 Acknowledgments
 
@@ -250,10 +252,3 @@ For security vulnerabilities, please email security@example.com instead of using
 
 This project is actively maintained. See the [CHANGELOG](CHANGELOG.md) for version history.
 
----
-
-Made with ❤️ for the Frappe/ERPNext community
-
----
-
-Built with ❤️ using [Frappe Framework](https://frappeframework.com)
