@@ -1,0 +1,722 @@
+{
+    "name": "Freelancer",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 0,
+    "istable": 0,
+    "editable_grid": 1,
+    "track_changes": 1,
+    "track_views": 1,
+    "engine": "InnoDB",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "naming_rule": "Expression (old style)",
+    "autoname": "naming_series:",
+    "title_field": "full_name",
+    "image_field": "image",
+    "search_fields": "full_name, contractor_name, email",
+    "show_title_field_in_link": 1,
+    "allow_rename": 1,
+    "allow_copy": 0,
+    "allow_import": 1,
+    "allow_events_in_timeline": 1,
+    "document_type": "Document",
+    "icon": "fa fa-user-tie",
+    "max_attachments": 10,
+    "quick_entry": 0,
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "import": 1,
+            "export": 1,
+            "share": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1,
+            "share": 1
+        },
+        {
+            "role": "Contractor Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1
+        },
+        {
+            "role": "Freelancer",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "if_owner": 1
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "HR-FRL-.YYYY.-\nFRL-.YYYY.-.#####",
+            "default": "HR-FRL-.YYYY.-",
+            "reqd": 0,
+            "set_only_once": 1,
+            "hidden": 0
+        },
+        {
+            "fieldname": "section_personal",
+            "fieldtype": "Section Break",
+            "label": "Personal Information",
+            "collapsible": 0
+        },
+        {
+            "fieldname": "salutation",
+            "fieldtype": "Link",
+            "label": "Salutation",
+            "options": "Salutation"
+        },
+        {
+            "fieldname": "first_name",
+            "fieldtype": "Data",
+            "label": "First Name",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "middle_name",
+            "fieldtype": "Data",
+            "label": "Middle Name"
+        },
+        {
+            "fieldname": "last_name",
+            "fieldtype": "Data",
+            "label": "Last Name",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_personal",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "full_name",
+            "fieldtype": "Data",
+            "label": "Full Name",
+            "read_only": 1,
+            "in_list_view": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "contractor_name",
+            "fieldtype": "Data",
+            "label": "Business/Trading Name",
+            "description": "Legal business name or trading name if different from personal name"
+        },
+        {
+            "fieldname": "gender",
+            "fieldtype": "Link",
+            "label": "Gender",
+            "options": "Gender"
+        },
+        {
+            "fieldname": "date_of_birth",
+            "fieldtype": "Date",
+            "label": "Date of Birth"
+        },
+        {
+            "fieldname": "image",
+            "fieldtype": "Attach Image",
+            "label": "Profile Image",
+            "hidden": 0
+        },
+        {
+            "fieldname": "section_contact",
+            "fieldtype": "Section Break",
+            "label": "Contact Information",
+            "collapsible": 0
+        },
+        {
+            "fieldname": "email",
+            "fieldtype": "Data",
+            "label": "Email",
+            "options": "Email",
+            "reqd": 1,
+            "in_list_view": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "personal_email",
+            "fieldtype": "Data",
+            "label": "Personal Email",
+            "options": "Email"
+        },
+        {
+            "fieldname": "phone",
+            "fieldtype": "Data",
+            "label": "Phone",
+            "options": "Phone"
+        },
+        {
+            "fieldname": "mobile",
+            "fieldtype": "Data",
+            "label": "Mobile",
+            "options": "Phone"
+        },
+        {
+            "fieldname": "column_break_contact",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "address",
+            "fieldtype": "Small Text",
+            "label": "Address"
+        },
+        {
+            "fieldname": "city",
+            "fieldtype": "Data",
+            "label": "City"
+        },
+        {
+            "fieldname": "state",
+            "fieldtype": "Data",
+            "label": "State/Province"
+        },
+        {
+            "fieldname": "postal_code",
+            "fieldtype": "Data",
+            "label": "Postal Code"
+        },
+        {
+            "fieldname": "country",
+            "fieldtype": "Link",
+            "label": "Country",
+            "options": "Country",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "section_residency",
+            "fieldtype": "Section Break",
+            "label": "Residency & Tax Status",
+            "collapsible": 0
+        },
+        {
+            "fieldname": "residency_status",
+            "fieldtype": "Select",
+            "label": "Residency Status",
+            "options": "\nEU Resident\nNon-EU Resident\nEU Posted Worker\nDigital Nomad\nExpat",
+            "reqd": 1,
+            "in_standard_filter": 1,
+            "description": "Select the tax residency status for compliance calculations"
+        },
+        {
+            "fieldname": "tax_residency_country",
+            "fieldtype": "Link",
+            "label": "Tax Residency Country",
+            "options": "Country",
+            "reqd": 1,
+            "description": "Country where you pay income taxes"
+        },
+        {
+            "fieldname": "is_eu_country",
+            "fieldtype": "Check",
+            "label": "Is EU Country",
+            "read_only": 1,
+            "description": "Automatically set based on tax residency country"
+        },
+        {
+            "fieldname": "column_break_residency",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "tax_treaty_applicable",
+            "fieldtype": "Link",
+            "label": "Applicable Tax Treaty",
+            "options": "Tax Treaty",
+            "description": "Double taxation treaty between residency and work country"
+        },
+        {
+            "fieldname": "withholding_tax_rate",
+            "fieldtype": "Percent",
+            "label": "Withholding Tax Rate",
+            "default": 0,
+            "description": "Percentage to withhold based on tax treaty (0% for EU residents)"
+        },
+        {
+            "fieldname": "vat_registered",
+            "fieldtype": "Check",
+            "label": "VAT/BTW Registered",
+            "description": "Is the freelancer registered for VAT/BTW?"
+        },
+        {
+            "fieldname": "vat_number",
+            "fieldtype": "Data",
+            "label": "VAT/BTW Number",
+            "depends_on": "vat_registered"
+        },
+        {
+            "fieldname": "vat_rate",
+            "fieldtype": "Percent",
+            "label": "VAT Rate",
+            "depends_on": "vat_registered",
+            "default": 0
+        },
+        {
+            "fieldname": "reverse_charge_applicable",
+            "fieldtype": "Check",
+            "label": "Reverse Charge Applicable",
+            "description": "For EU cross-border B2B services (VAT 0%)",
+            "depends_on": "eval:doc.is_eu_country && doc.vat_registered"
+        },
+        {
+            "fieldname": "section_professional",
+            "fieldtype": "Section Break",
+            "label": "Professional Information",
+            "collapsible": 0
+        },
+        {
+            "fieldname": "worker_type",
+            "fieldtype": "Select",
+            "label": "Worker Type",
+            "options": "Freelancer\nIndependent Contractor\nSelf-Employed\nConsultant\nAgency Contractor",
+            "reqd": 1,
+            "in_standard_filter": 1,
+            "default": "Freelancer"
+        },
+        {
+            "fieldname": "specialization",
+            "fieldtype": "Data",
+            "label": "Specialization/Expertise"
+        },
+        {
+            "fieldname": "skills",
+            "fieldtype": "Table MultiSelect",
+            "label": "Skills",
+            "options": "Freelancer Skill"
+        },
+        {
+            "fieldname": "column_break_professional",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Link",
+            "label": "Company",
+            "options": "Company",
+            "reqd": 1,
+            "in_standard_filter": 1,
+            "description": "The hiring company"
+        },
+        {
+            "fieldname": "department",
+            "fieldtype": "Link",
+            "label": "Department",
+            "options": "Department"
+        },
+        {
+            "fieldname": "reports_to",
+            "fieldtype": "Link",
+            "label": "Reports To",
+            "options": "Employee",
+            "description": "Primary contact/manager in the company"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Active\nInactive\nOnboarding\nOffboarding\nBlacklisted",
+            "default": "Onboarding",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "section_rates",
+            "fieldtype": "Section Break",
+            "label": "Rates & Payment",
+            "collapsible": 0
+        },
+        {
+            "fieldname": "billing_type",
+            "fieldtype": "Select",
+            "label": "Billing Type",
+            "options": "Hourly\nDaily\nWeekly\nMonthly\nProject-Based\nMilestone-Based",
+            "reqd": 1,
+            "default": "Hourly"
+        },
+        {
+            "fieldname": "rate",
+            "fieldtype": "Currency",
+            "label": "Rate",
+            "options": "currency",
+            "reqd": 1,
+            "description": "Rate per billing unit (hour/day/week/month)"
+        },
+        {
+            "fieldname": "currency",
+            "fieldtype": "Link",
+            "label": "Currency",
+            "options": "Currency",
+            "default": "EUR",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_rates",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "payment_terms",
+            "fieldtype": "Link",
+            "label": "Payment Terms",
+            "options": "Payment Terms Template",
+            "description": "Default payment terms for invoices"
+        },
+        {
+            "fieldname": "bank_name",
+            "fieldtype": "Data",
+            "label": "Bank Name"
+        },
+        {
+            "fieldname": "bank_account",
+            "fieldtype": "Data",
+            "label": "Bank Account / IBAN"
+        },
+        {
+            "fieldname": "bank_swift_code",
+            "fieldtype": "Data",
+            "label": "SWIFT/BIC Code"
+        },
+        {
+            "fieldname": "section_identification",
+            "fieldtype": "Section Break",
+            "label": "Identification & Compliance",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "nationality",
+            "fieldtype": "Link",
+            "label": "Nationality",
+            "options": "Country"
+        },
+        {
+            "fieldname": "passport_number",
+            "fieldtype": "Data",
+            "label": "Passport Number"
+        },
+        {
+            "fieldname": "passport_expiry",
+            "fieldtype": "Date",
+            "label": "Passport Expiry Date"
+        },
+        {
+            "fieldname": "column_break_identification",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "tax_id",
+            "fieldtype": "Data",
+            "label": "Tax ID / TIN",
+            "description": "Tax Identification Number in residency country"
+        },
+        {
+            "fieldname": "social_security_number",
+            "fieldtype": "Data",
+            "label": "Social Security Number",
+            "description": "BSN (Netherlands), SSN (US), NI Number (UK), etc."
+        },
+        {
+            "fieldname": "business_registration_number",
+            "fieldtype": "Data",
+            "label": "Business Registration Number",
+            "description": "KvK (Netherlands), Company House (UK), etc."
+        },
+        {
+            "fieldname": "section_documents",
+            "fieldtype": "Section Break",
+            "label": "Documents",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "contract_attachment",
+            "fieldtype": "Attach",
+            "label": "Master Service Agreement"
+        },
+        {
+            "fieldname": "id_document",
+            "fieldtype": "Attach",
+            "label": "ID Document Copy"
+        },
+        {
+            "fieldname": "tax_certificate",
+            "fieldtype": "Attach",
+            "label": "Tax Residency Certificate"
+        },
+        {
+            "fieldname": "column_break_documents",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "vat_certificate",
+            "fieldtype": "Attach",
+            "label": "VAT Registration Certificate",
+            "depends_on": "vat_registered"
+        },
+        {
+            "fieldname": "insurance_certificate",
+            "fieldtype": "Attach",
+            "label": "Professional Insurance Certificate"
+        },
+        {
+            "fieldname": "a1_certificate",
+            "fieldtype": "Attach",
+            "label": "A1 Certificate (EU Posted Workers)",
+            "depends_on": "eval:doc.residency_status == 'EU Posted Worker'",
+            "description": "Required for EU posted workers under Regulation (EC) No 883/2004"
+        },
+        {
+            "fieldname": "section_gdpr",
+            "fieldtype": "Section Break",
+            "label": "GDPR & Data Privacy",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "gdpr_consent_given",
+            "fieldtype": "Check",
+            "label": "GDPR Consent Given",
+            "description": "Freelancer has consented to data processing"
+        },
+        {
+            "fieldname": "gdpr_consent_date",
+            "fieldtype": "Datetime",
+            "label": "Consent Date",
+            "depends_on": "gdpr_consent_given",
+            "read_only": 1
+        },
+        {
+            "fieldname": "data_processing_purposes",
+            "fieldtype": "Small Text",
+            "label": "Data Processing Purposes",
+            "read_only": 1,
+            "default": "Contract management, payment processing, tax compliance, legal obligations"
+        },
+        {
+            "fieldname": "column_break_gdpr",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "marketing_consent",
+            "fieldtype": "Check",
+            "label": "Marketing Communications Consent"
+        },
+        {
+            "fieldname": "third_party_sharing_consent",
+            "fieldtype": "Check",
+            "label": "Third Party Data Sharing Consent",
+            "description": "Allow sharing with accounting, legal, or payment providers"
+        },
+        {
+            "fieldname": "data_retention_period",
+            "fieldtype": "Select",
+            "label": "Data Retention Period",
+            "options": "7 Years (Tax Compliance)\n10 Years (Extended Compliance)\nUntil Deletion Request",
+            "default": "7 Years (Tax Compliance)"
+        },
+        {
+            "fieldname": "section_compliance",
+            "fieldtype": "Section Break",
+            "label": "EU Compliance",
+            "collapsible": 1,
+            "depends_on": "eval:doc.is_eu_country || doc.residency_status == 'EU Posted Worker'"
+        },
+        {
+            "fieldname": "posted_worker_directive_applicable",
+            "fieldtype": "Check",
+            "label": "Posted Workers Directive Applicable",
+            "description": "Subject to Directive 96/71/EC for temporary assignments"
+        },
+        {
+            "fieldname": "posting_country",
+            "fieldtype": "Link",
+            "label": "Posting Country",
+            "options": "Country",
+            "depends_on": "posted_worker_directive_applicable"
+        },
+        {
+            "fieldname": "posting_start_date",
+            "fieldtype": "Date",
+            "label": "Posting Start Date",
+            "depends_on": "posted_worker_directive_applicable"
+        },
+        {
+            "fieldname": "posting_end_date",
+            "fieldtype": "Date",
+            "label": "Posting End Date",
+            "depends_on": "posted_worker_directive_applicable"
+        },
+        {
+            "fieldname": "column_break_compliance",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "social_security_coordination",
+            "fieldtype": "Check",
+            "label": "Social Security Coordination (EC 883/2004)",
+            "description": "Subject to EU social security coordination rules"
+        },
+        {
+            "fieldname": "competent_member_state",
+            "fieldtype": "Link",
+            "label": "Competent Member State",
+            "options": "Country",
+            "depends_on": "social_security_coordination",
+            "description": "EU country responsible for social security"
+        },
+        {
+            "fieldname": "minimum_wage_compliance",
+            "fieldtype": "Check",
+            "label": "Minimum Wage Compliance Verified",
+            "description": "Rate meets EU/national minimum wage requirements"
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Additional Information",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Notes"
+        },
+        {
+            "fieldname": "section_system",
+            "fieldtype": "Section Break",
+            "label": "System Information",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "user_id",
+            "fieldtype": "Link",
+            "label": "User ID",
+            "options": "User",
+            "description": "Linked user account for portal access"
+        },
+        {
+            "fieldname": "linked_employee",
+            "fieldtype": "Link",
+            "label": "Linked Employee",
+            "options": "Employee",
+            "description": "If freelancer is also a part-time employee (hybrid worker)"
+        },
+        {
+            "fieldname": "column_break_system",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "onboarding_date",
+            "fieldtype": "Date",
+            "label": "Onboarding Date"
+        },
+        {
+            "fieldname": "offboarding_date",
+            "fieldtype": "Date",
+            "label": "Offboarding Date"
+        },
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "options": "Freelancer",
+            "read_only": 1,
+            "no_copy": 1
+        }
+    ],
+    "links": [
+        {
+            "link_doctype": "Freelancer Contract",
+            "link_fieldname": "freelancer",
+            "group": "Contracts"
+        },
+        {
+            "link_doctype": "Freelancer Payment",
+            "link_fieldname": "freelancer",
+            "group": "Payments"
+        },
+        {
+            "link_doctype": "Freelancer Expense",
+            "link_fieldname": "freelancer",
+            "group": "Expenses"
+        },
+        {
+            "link_doctype": "Freelancer Milestone",
+            "link_fieldname": "freelancer",
+            "group": "Deliverables"
+        },
+        {
+            "link_doctype": "GDPR Consent Log",
+            "link_fieldname": "freelancer",
+            "group": "Compliance"
+        }
+    ],
+    "actions": [
+        {
+            "label": "Create Contract",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer.freelancer.create_contract"
+        },
+        {
+            "label": "Create Payment",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer.freelancer.create_payment"
+        },
+        {
+            "label": "Export Data (GDPR)",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer.freelancer.export_gdpr_data"
+        }
+    ],
+    "states": [
+        {
+            "title": "Onboarding",
+            "color": "blue"
+        },
+        {
+            "title": "Active",
+            "color": "green"
+        },
+        {
+            "title": "Inactive",
+            "color": "gray"
+        },
+        {
+            "title": "Offboarding",
+            "color": "orange"
+        },
+        {
+            "title": "Blacklisted",
+            "color": "red"
+        }
+    ]
+}

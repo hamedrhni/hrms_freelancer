@@ -1,0 +1,115 @@
+{
+  "actions": [],
+  "creation": "2024-01-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "expense_description",
+    "expense_type",
+    "expense_date",
+    "column_break_1",
+    "amount",
+    "currency",
+    "amount_in_payment_currency",
+    "section_break_2",
+    "receipt_attached",
+    "receipt_attachment",
+    "column_break_3",
+    "billable",
+    "approved",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "expense_description",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "expense_type",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Expense Type",
+      "options": "Travel\nAccommodation\nMeals\nEquipment\nSoftware\nMaterials\nCommunications\nOther"
+    },
+    {
+      "fieldname": "expense_date",
+      "fieldtype": "Date",
+      "label": "Expense Date"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Amount",
+      "reqd": 1
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "Currency",
+      "options": "Currency"
+    },
+    {
+      "fieldname": "amount_in_payment_currency",
+      "fieldtype": "Currency",
+      "label": "Amount in Payment Currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Documentation"
+    },
+    {
+      "fieldname": "receipt_attached",
+      "fieldtype": "Check",
+      "label": "Receipt Attached"
+    },
+    {
+      "fieldname": "receipt_attachment",
+      "fieldtype": "Attach",
+      "depends_on": "receipt_attached",
+      "label": "Receipt"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "billable",
+      "fieldtype": "Check",
+      "label": "Billable to Client",
+      "default": "1"
+    },
+    {
+      "fieldname": "approved",
+      "fieldtype": "Check",
+      "label": "Approved"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2024-01-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "HRMS Freelancer",
+  "name": "Freelancer Payment Expense",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

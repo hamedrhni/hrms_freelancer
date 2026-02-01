@@ -1,0 +1,483 @@
+/*
+ * HRMS Freelancer - Main Stylesheet
+ * Styles for the freelancer management module
+ */
+
+:root {
+  --fl-primary: #0066cc;
+  --fl-primary-light: rgba(0, 102, 204, 0.1);
+  --fl-success: #28a745;
+  --fl-success-light: rgba(40, 167, 69, 0.1);
+  --fl-warning: #ffc107;
+  --fl-warning-light: rgba(255, 193, 7, 0.1);
+  --fl-danger: #dc3545;
+  --fl-danger-light: rgba(220, 53, 69, 0.1);
+  --fl-info: #17a2b8;
+  --fl-info-light: rgba(23, 162, 184, 0.1);
+  --fl-muted: #6c757d;
+  --fl-muted-light: rgba(108, 117, 125, 0.1);
+}
+
+/* Freelancer Form Styles */
+.frappe-form[data-doctype="Freelancer"] .form-section,
+.frappe-form[data-doctype="Freelancer Contract"] .form-section,
+.frappe-form[data-doctype="Freelancer Payment"] .form-section {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Compliance Dashboard in Freelancer Form */
+.freelancer-compliance-dashboard {
+  padding: 15px;
+  background: var(--bg-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.compliance-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.compliance-item i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.compliance-item.compliant {
+  background: var(--fl-success-light);
+  color: var(--fl-success);
+}
+
+.compliance-item.non-compliant {
+  background: var(--fl-danger-light);
+  color: var(--fl-danger);
+}
+
+.compliance-item.pending {
+  background: var(--fl-warning-light);
+  color: var(--fl-warning);
+}
+
+.compliance-item.na {
+  background: var(--fl-muted-light);
+  color: var(--fl-muted);
+}
+
+/* Contract Summary Dashboard */
+.contract-summary-dashboard {
+  padding: 15px;
+  background: var(--bg-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.summary-card {
+  text-align: center;
+  padding: 15px;
+  background: var(--card-bg);
+  border-radius: 8px;
+}
+
+.summary-card h6 {
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.summary-card .value {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Payment Tax Breakdown */
+.payment-tax-breakdown {
+  padding: 15px;
+  background: var(--bg-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.payment-tax-breakdown table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.payment-tax-breakdown td {
+  padding: 10px;
+}
+
+.payment-tax-breakdown .subtotal td {
+  background: var(--subtle-fg);
+  font-weight: 500;
+}
+
+.payment-tax-breakdown .total td {
+  background: var(--fl-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.payment-tax-breakdown .withholding td {
+  background: var(--fl-danger-light);
+}
+
+.reverse-charge-notice {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: var(--fl-info-light);
+  border-radius: 5px;
+  color: var(--fl-info);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* EU Status Badges */
+.eu-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.eu-status-badge.eu-resident {
+  background: var(--fl-primary-light);
+  color: var(--fl-primary);
+}
+
+.eu-status-badge.non-eu-resident {
+  background: var(--fl-muted-light);
+  color: var(--fl-muted);
+}
+
+/* VAT Status */
+.vat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vat-badge.registered {
+  background: var(--fl-success-light);
+  color: var(--fl-success);
+}
+
+.vat-badge.not-registered {
+  background: var(--fl-muted-light);
+  color: var(--fl-muted);
+}
+
+/* Payment Status Badges */
+.payment-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.payment-status.draft {
+  background: var(--fl-muted-light);
+  color: var(--fl-muted);
+}
+
+.payment-status.pending-approval {
+  background: var(--fl-warning-light);
+  color: #856404;
+}
+
+.payment-status.approved {
+  background: var(--fl-primary-light);
+  color: var(--fl-primary);
+}
+
+.payment-status.paid {
+  background: var(--fl-success-light);
+  color: var(--fl-success);
+}
+
+.payment-status.rejected {
+  background: var(--fl-danger-light);
+  color: var(--fl-danger);
+}
+
+/* Contract Status */
+.contract-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.contract-status.active {
+  background: var(--fl-success-light);
+  color: var(--fl-success);
+}
+
+.contract-status.draft {
+  background: var(--fl-muted-light);
+  color: var(--fl-muted);
+}
+
+.contract-status.expired {
+  background: var(--fl-danger-light);
+  color: var(--fl-danger);
+}
+
+.contract-status.terminated {
+  background: var(--fl-warning-light);
+  color: #856404;
+}
+
+/* Milestone Progress */
+.milestone-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.milestone-progress .progress-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--fl-muted-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.milestone-progress .progress-fill {
+  height: 100%;
+  background: var(--fl-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.milestone-progress .progress-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Currency Display */
+.currency-amount {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  font-size: 14px;
+}
+
+.currency-amount.large {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.currency-amount.negative {
+  color: var(--fl-danger);
+}
+
+.currency-amount.positive {
+  color: var(--fl-success);
+}
+
+/* Tax Calculator Widget */
+.tax-calculator-widget {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tax-calculator-widget h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+
+.tax-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tax-breakdown-row:last-child {
+  border-bottom: none;
+}
+
+.tax-breakdown-row.total {
+  font-weight: bold;
+  font-size: 18px;
+  padding-top: 15px;
+  margin-top: 10px;
+  border-top: 2px solid var(--fl-primary);
+}
+
+/* List View Customizations */
+.list-row[data-doctype="Freelancer Payment"] .list-row-container,
+.list-row[data-doctype="Freelancer Contract"] .list-row-container,
+.list-row[data-doctype="Freelancer"] .list-row-container {
+  transition: background 0.2s;
+}
+
+.list-row[data-doctype="Freelancer Payment"]:hover .list-row-container,
+.list-row[data-doctype="Freelancer Contract"]:hover .list-row-container,
+.list-row[data-doctype="Freelancer"]:hover .list-row-container {
+  background: var(--fl-primary-light);
+}
+
+/* Compliance Alert Banners */
+.compliance-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.compliance-alert.warning {
+  background: var(--fl-warning-light);
+  border-left: 4px solid var(--fl-warning);
+}
+
+.compliance-alert.danger {
+  background: var(--fl-danger-light);
+  border-left: 4px solid var(--fl-danger);
+}
+
+.compliance-alert.info {
+  background: var(--fl-info-light);
+  border-left: 4px solid var(--fl-info);
+}
+
+.compliance-alert i {
+  font-size: 20px;
+}
+
+.compliance-alert .alert-content {
+  flex: 1;
+}
+
+.compliance-alert .alert-title {
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.compliance-alert .alert-message {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* GDPR Consent Indicator */
+.gdpr-consent-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.gdpr-consent-status.obtained {
+  background: var(--fl-success-light);
+  color: var(--fl-success);
+}
+
+.gdpr-consent-status.not-obtained {
+  background: var(--fl-danger-light);
+  color: var(--fl-danger);
+}
+
+/* Print Styles */
+@media print {
+  .frappe-form .page-actions,
+  .frappe-form .form-sidebar {
+    display: none !important;
+  }
+  
+  .payment-tax-breakdown {
+    border: 1px solid #ddd;
+  }
+  
+  .reverse-charge-notice {
+    border: 1px solid #17a2b8;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fl-primary-light: rgba(0, 102, 204, 0.2);
+    --fl-success-light: rgba(40, 167, 69, 0.2);
+    --fl-warning-light: rgba(255, 193, 7, 0.2);
+    --fl-danger-light: rgba(220, 53, 69, 0.2);
+    --fl-info-light: rgba(23, 162, 184, 0.2);
+    --fl-muted-light: rgba(108, 117, 125, 0.2);
+  }
+}
+
+/* Animation for status changes */
+@keyframes statusPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.status-updated {
+  animation: statusPulse 0.3s ease-out;
+}
+
+/* Loading states */
+.fl-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.fl-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contract-summary-dashboard .row {
+    flex-direction: column;
+  }
+  
+  .compliance-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .compliance-item i {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+  
+  .payment-tax-breakdown table {
+    font-size: 12px;
+  }
+}

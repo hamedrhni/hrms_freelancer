@@ -1,0 +1,269 @@
+{
+    "name": "Tax Treaty",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 0,
+    "istable": 0,
+    "editable_grid": 0,
+    "track_changes": 1,
+    "engine": "InnoDB",
+    "naming_rule": "Expression (old style)",
+    "autoname": "field:treaty_code",
+    "title_field": "treaty_name",
+    "search_fields": "treaty_name, country_1, country_2",
+    "show_title_field_in_link": 1,
+    "allow_rename": 0,
+    "allow_import": 1,
+    "document_type": "Setup",
+    "icon": "fa fa-balance-scale",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "Compliance Officer",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "section_basic",
+            "fieldtype": "Section Break",
+            "label": "Treaty Information"
+        },
+        {
+            "fieldname": "treaty_code",
+            "fieldtype": "Data",
+            "label": "Treaty Code",
+            "reqd": 1,
+            "unique": 1,
+            "in_list_view": 1,
+            "description": "e.g., NL-US, DE-UK"
+        },
+        {
+            "fieldname": "treaty_name",
+            "fieldtype": "Data",
+            "label": "Treaty Name",
+            "reqd": 1,
+            "in_list_view": 1,
+            "description": "Full name of the tax treaty"
+        },
+        {
+            "fieldname": "country_1",
+            "fieldtype": "Link",
+            "label": "Country 1",
+            "options": "Country",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "country_2",
+            "fieldtype": "Link",
+            "label": "Country 2",
+            "options": "Country",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "effective_date",
+            "fieldtype": "Date",
+            "label": "Effective Date",
+            "description": "Date treaty came into force"
+        },
+        {
+            "fieldname": "expiry_date",
+            "fieldtype": "Date",
+            "label": "Expiry Date",
+            "description": "Leave blank if treaty has no expiry"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Active\nSuperseded\nTerminated\nPending",
+            "default": "Active",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "treaty_type",
+            "fieldtype": "Select",
+            "label": "Treaty Type",
+            "options": "Double Taxation Agreement (DTA)\nTax Information Exchange Agreement (TIEA)\nMultilateral Convention\nEU Directive Implementation\nOther",
+            "default": "Double Taxation Agreement (DTA)"
+        },
+        {
+            "fieldname": "section_rates",
+            "fieldtype": "Section Break",
+            "label": "Withholding Tax Rates"
+        },
+        {
+            "fieldname": "standard_rate",
+            "fieldtype": "Percent",
+            "label": "Standard Withholding Rate",
+            "description": "Default withholding rate without treaty benefits"
+        },
+        {
+            "fieldname": "reduced_rate",
+            "fieldtype": "Percent",
+            "label": "Reduced Treaty Rate",
+            "reqd": 1,
+            "description": "Withholding rate under treaty (e.g., 15% for US-NL)"
+        },
+        {
+            "fieldname": "dividend_rate",
+            "fieldtype": "Percent",
+            "label": "Dividend Withholding Rate"
+        },
+        {
+            "fieldname": "interest_rate",
+            "fieldtype": "Percent",
+            "label": "Interest Withholding Rate"
+        },
+        {
+            "fieldname": "column_break_rates",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "royalty_rate",
+            "fieldtype": "Percent",
+            "label": "Royalty Withholding Rate"
+        },
+        {
+            "fieldname": "service_fee_rate",
+            "fieldtype": "Percent",
+            "label": "Service Fee/Technical Fee Rate",
+            "description": "Applicable to freelancer services"
+        },
+        {
+            "fieldname": "independent_services_rate",
+            "fieldtype": "Percent",
+            "label": "Independent Personal Services Rate",
+            "description": "Rate for freelancer/self-employed income"
+        },
+        {
+            "fieldname": "section_conditions",
+            "fieldtype": "Section Break",
+            "label": "Conditions & Requirements"
+        },
+        {
+            "fieldname": "certificate_required",
+            "fieldtype": "Check",
+            "label": "Tax Residency Certificate Required",
+            "default": 1,
+            "description": "Is a certificate of tax residency required to claim treaty benefits?"
+        },
+        {
+            "fieldname": "form_required",
+            "fieldtype": "Data",
+            "label": "Required Form",
+            "description": "e.g., W-8BEN (US), Form 6166 (US Certificate)"
+        },
+        {
+            "fieldname": "minimum_stay_days",
+            "fieldtype": "Int",
+            "label": "Minimum Stay (Days)",
+            "description": "Days of physical presence required (often 183 days)"
+        },
+        {
+            "fieldname": "column_break_conditions",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "limitation_on_benefits",
+            "fieldtype": "Check",
+            "label": "Limitation on Benefits (LOB)",
+            "description": "Treaty includes LOB provisions"
+        },
+        {
+            "fieldname": "permanent_establishment_threshold",
+            "fieldtype": "Int",
+            "label": "PE Threshold (Days)",
+            "description": "Days before permanent establishment is triggered"
+        },
+        {
+            "fieldname": "treaty_benefits_automatic",
+            "fieldtype": "Check",
+            "label": "Benefits Applied Automatically",
+            "description": "Treaty benefits apply automatically (vs. claiming)"
+        },
+        {
+            "fieldname": "section_articles",
+            "fieldtype": "Section Break",
+            "label": "Relevant Treaty Articles",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "article_independent_services",
+            "fieldtype": "Data",
+            "label": "Independent Services Article",
+            "description": "Article number for independent personal services"
+        },
+        {
+            "fieldname": "article_employment",
+            "fieldtype": "Data",
+            "label": "Employment Income Article"
+        },
+        {
+            "fieldname": "article_business_profits",
+            "fieldtype": "Data",
+            "label": "Business Profits Article"
+        },
+        {
+            "fieldname": "article_text",
+            "fieldtype": "Text Editor",
+            "label": "Relevant Article Text",
+            "description": "Copy of relevant treaty provisions"
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Notes & References",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "official_source_url",
+            "fieldtype": "Data",
+            "label": "Official Source URL",
+            "options": "URL",
+            "description": "Link to official treaty text"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Implementation Notes"
+        },
+        {
+            "fieldname": "disclaimer",
+            "fieldtype": "Small Text",
+            "label": "Disclaimer",
+            "read_only": 1,
+            "default": "This information is for reference only. Tax treaties are complex and subject to interpretation. Consult a qualified tax professional for specific advice."
+        }
+    ]
+}

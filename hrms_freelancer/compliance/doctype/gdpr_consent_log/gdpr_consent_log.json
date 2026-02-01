@@ -1,0 +1,173 @@
+{
+    "name": "GDPR Consent Log",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 0,
+    "istable": 0,
+    "editable_grid": 0,
+    "track_changes": 0,
+    "engine": "InnoDB",
+    "naming_rule": "Expression (old style)",
+    "autoname": "GDPR-.#####",
+    "search_fields": "freelancer, action, user",
+    "allow_rename": 0,
+    "allow_copy": 0,
+    "allow_import": 0,
+    "document_type": "Document",
+    "icon": "fa fa-shield-alt",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "Compliance Officer",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "section_basic",
+            "fieldtype": "Section Break",
+            "label": "Consent Details"
+        },
+        {
+            "fieldname": "freelancer",
+            "fieldtype": "Link",
+            "label": "Freelancer",
+            "options": "Freelancer",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "freelancer_name",
+            "fieldtype": "Data",
+            "label": "Freelancer Name",
+            "fetch_from": "freelancer.full_name",
+            "read_only": 1
+        },
+        {
+            "fieldname": "action",
+            "fieldtype": "Select",
+            "label": "Action",
+            "options": "Consent Given\nConsent Withdrawn\nData Export\nData Deletion Request\nData Rectification\nProcessing Objection\nConsent Updated",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "timestamp",
+            "fieldtype": "Datetime",
+            "label": "Timestamp",
+            "reqd": 1,
+            "in_list_view": 1,
+            "default": "Now"
+        },
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "label": "Recorded By",
+            "options": "User",
+            "reqd": 1
+        },
+        {
+            "fieldname": "ip_address",
+            "fieldtype": "Data",
+            "label": "IP Address",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_details",
+            "fieldtype": "Section Break",
+            "label": "Consent Details"
+        },
+        {
+            "fieldname": "purposes",
+            "fieldtype": "Small Text",
+            "label": "Processing Purposes",
+            "description": "What data processing was consented to"
+        },
+        {
+            "fieldname": "legal_basis",
+            "fieldtype": "Select",
+            "label": "Legal Basis",
+            "options": "\nConsent (Art. 6(1)(a))\nContract (Art. 6(1)(b))\nLegal Obligation (Art. 6(1)(c))\nVital Interests (Art. 6(1)(d))\nPublic Interest (Art. 6(1)(e))\nLegitimate Interests (Art. 6(1)(f))",
+            "description": "GDPR legal basis for processing"
+        },
+        {
+            "fieldname": "column_break_details",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "data_categories",
+            "fieldtype": "Small Text",
+            "label": "Data Categories",
+            "description": "Categories of personal data covered"
+        },
+        {
+            "fieldname": "retention_period",
+            "fieldtype": "Data",
+            "label": "Retention Period",
+            "description": "How long data will be retained"
+        },
+        {
+            "fieldname": "section_evidence",
+            "fieldtype": "Section Break",
+            "label": "Evidence",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "consent_method",
+            "fieldtype": "Select",
+            "label": "Consent Method",
+            "options": "\nOnline Form\nEmail Confirmation\nSigned Document\nVerbal (Recorded)\nAPI/System"
+        },
+        {
+            "fieldname": "consent_document",
+            "fieldtype": "Attach",
+            "label": "Evidence Document"
+        },
+        {
+            "fieldname": "consent_text",
+            "fieldtype": "Text",
+            "label": "Consent Text Shown",
+            "description": "The actual consent text presented to the data subject"
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Notes",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Additional Notes"
+        }
+    ]
+}

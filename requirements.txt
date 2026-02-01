@@ -1,0 +1,11 @@
+# Frappe Framework dependencies
+frappe>=15.0.0
+erpnext>=15.0.0
+hrms>=15.0.0
+
+# Additional dependencies
+python-dateutil>=2.8.2
+pycountry>=22.3.5
+forex-python>=1.8
+Babel>=2.11.0
+phonenumbers>=8.13.0

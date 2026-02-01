@@ -1,0 +1,256 @@
+{
+    "name": "VAT Configuration",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 0,
+    "istable": 0,
+    "editable_grid": 0,
+    "track_changes": 1,
+    "engine": "InnoDB",
+    "naming_rule": "Expression (old style)",
+    "autoname": "field:country",
+    "title_field": "country",
+    "search_fields": "country, standard_rate",
+    "show_title_field_in_link": 1,
+    "allow_rename": 0,
+    "allow_import": 1,
+    "document_type": "Setup",
+    "icon": "fa fa-percent",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 1,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        },
+        {
+            "role": "Freelancer Accountant",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "export": 1
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "section_basic",
+            "fieldtype": "Section Break",
+            "label": "VAT Information"
+        },
+        {
+            "fieldname": "country",
+            "fieldtype": "Link",
+            "label": "Country",
+            "options": "Country",
+            "reqd": 1,
+            "unique": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "country_code",
+            "fieldtype": "Data",
+            "label": "Country Code",
+            "read_only": 1,
+            "fetch_from": "country.code"
+        },
+        {
+            "fieldname": "is_eu_member",
+            "fieldtype": "Check",
+            "label": "EU Member State",
+            "description": "Is this country an EU member state?"
+        },
+        {
+            "fieldname": "vat_name",
+            "fieldtype": "Data",
+            "label": "Local VAT Name",
+            "description": "e.g., BTW (Netherlands), USt (Germany), TVA (France)"
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "standard_rate",
+            "fieldtype": "Percent",
+            "label": "Standard VAT Rate",
+            "reqd": 1,
+            "in_list_view": 1,
+            "description": "Standard VAT rate (e.g., 21% for Netherlands)"
+        },
+        {
+            "fieldname": "reduced_rate_1",
+            "fieldtype": "Percent",
+            "label": "Reduced Rate 1",
+            "description": "First reduced rate (e.g., 9% for Netherlands)"
+        },
+        {
+            "fieldname": "reduced_rate_2",
+            "fieldtype": "Percent",
+            "label": "Reduced Rate 2",
+            "description": "Second reduced rate if applicable"
+        },
+        {
+            "fieldname": "super_reduced_rate",
+            "fieldtype": "Percent",
+            "label": "Super Reduced Rate",
+            "description": "Super reduced rate if applicable"
+        },
+        {
+            "fieldname": "zero_rate_applicable",
+            "fieldtype": "Check",
+            "label": "Zero Rate Available",
+            "default": 1
+        },
+        {
+            "fieldname": "section_thresholds",
+            "fieldtype": "Section Break",
+            "label": "Registration Thresholds"
+        },
+        {
+            "fieldname": "registration_threshold",
+            "fieldtype": "Currency",
+            "label": "VAT Registration Threshold",
+            "description": "Annual turnover threshold for mandatory VAT registration"
+        },
+        {
+            "fieldname": "threshold_currency",
+            "fieldtype": "Link",
+            "label": "Threshold Currency",
+            "options": "Currency",
+            "default": "EUR"
+        },
+        {
+            "fieldname": "small_business_scheme",
+            "fieldtype": "Check",
+            "label": "Small Business Scheme Available",
+            "description": "Is there a small business exemption scheme?"
+        },
+        {
+            "fieldname": "column_break_thresholds",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "distance_selling_threshold",
+            "fieldtype": "Currency",
+            "label": "Distance Selling Threshold (EU)",
+            "description": "Threshold for EU distance selling (€10,000 EU-wide from 2021)"
+        },
+        {
+            "fieldname": "moss_applicable",
+            "fieldtype": "Check",
+            "label": "OSS/MOSS Applicable",
+            "description": "One-Stop-Shop for digital services"
+        },
+        {
+            "fieldname": "section_services",
+            "fieldtype": "Section Break",
+            "label": "Service VAT Rules"
+        },
+        {
+            "fieldname": "b2b_services_rate",
+            "fieldtype": "Percent",
+            "label": "B2B Services Rate",
+            "description": "VAT rate for B2B services (usually 0% with reverse charge)"
+        },
+        {
+            "fieldname": "b2c_services_rate",
+            "fieldtype": "Percent",
+            "label": "B2C Services Rate",
+            "description": "VAT rate for B2C services"
+        },
+        {
+            "fieldname": "reverse_charge_b2b",
+            "fieldtype": "Check",
+            "label": "Reverse Charge for B2B",
+            "default": 1,
+            "description": "Apply reverse charge mechanism for B2B cross-border services"
+        },
+        {
+            "fieldname": "column_break_services",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "digital_services_rate",
+            "fieldtype": "Percent",
+            "label": "Digital Services Rate",
+            "description": "Rate for electronically supplied services"
+        },
+        {
+            "fieldname": "professional_services_rate",
+            "fieldtype": "Percent",
+            "label": "Professional Services Rate",
+            "description": "Rate for consultancy/professional services"
+        },
+        {
+            "fieldname": "section_filing",
+            "fieldtype": "Section Break",
+            "label": "Filing Information",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "filing_frequency",
+            "fieldtype": "Select",
+            "label": "Filing Frequency",
+            "options": "Monthly\nQuarterly\nAnnually"
+        },
+        {
+            "fieldname": "fiscal_year_end",
+            "fieldtype": "Select",
+            "label": "Fiscal Year End",
+            "options": "December 31\nMarch 31\nJune 30\nSeptember 30\nOther"
+        },
+        {
+            "fieldname": "vat_number_format",
+            "fieldtype": "Data",
+            "label": "VAT Number Format",
+            "description": "Format description (e.g., NL123456789B01)"
+        },
+        {
+            "fieldname": "column_break_filing",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "tax_authority",
+            "fieldtype": "Data",
+            "label": "Tax Authority",
+            "description": "Name of tax authority"
+        },
+        {
+            "fieldname": "tax_authority_url",
+            "fieldtype": "Data",
+            "label": "Tax Authority URL",
+            "options": "URL"
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Notes",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "effective_date",
+            "fieldtype": "Date",
+            "label": "Rates Effective From"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Notes"
+        }
+    ]
+}

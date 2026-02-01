@@ -1,0 +1,283 @@
+{% raw %}
+<style>
+    .print-format {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    .company-info h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+    .invoice-title {
+        text-align: right;
+    }
+    .invoice-title h2 {
+        margin: 0;
+        color: #0066cc;
+        font-size: 28px;
+    }
+    .invoice-meta {
+        margin-top: 10px;
+    }
+    .invoice-meta p {
+        margin: 5px 0;
+    }
+    .parties {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+    .party-box {
+        width: 45%;
+    }
+    .party-box h3 {
+        color: #0066cc;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .items-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .items-table th {
+        background: #0066cc;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+    .items-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .items-table .amount {
+        text-align: right;
+    }
+    .totals {
+        float: right;
+        width: 300px;
+    }
+    .totals table {
+        width: 100%;
+    }
+    .totals td {
+        padding: 8px;
+    }
+    .totals .label {
+        text-align: right;
+    }
+    .totals .value {
+        text-align: right;
+        font-weight: bold;
+    }
+    .totals .grand-total {
+        background: #0066cc;
+        color: white;
+    }
+    .reverse-charge-notice {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+        clear: both;
+    }
+    .reverse-charge-notice h4 {
+        margin: 0 0 10px 0;
+        color: #856404;
+    }
+    .payment-info {
+        margin-top: 30px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 5px;
+    }
+    .payment-info h3 {
+        margin-top: 0;
+        color: #0066cc;
+    }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        font-size: 12px;
+        color: #666;
+    }
+</style>
+
+<div class="print-format">
+    <div class="header">
+        <div class="company-info">
+            <h1>{{ doc.company }}</h1>
+            {% if frappe.db.get_value("Company", doc.company, "company_address") %}
+            <p>{{ frappe.db.get_value("Company", doc.company, "company_address") }}</p>
+            {% endif %}
+        </div>
+        <div class="invoice-title">
+            <h2>PAYMENT INVOICE</h2>
+            <div class="invoice-meta">
+                <p><strong>Invoice No:</strong> {{ doc.name }}</p>
+                <p><strong>Date:</strong> {{ frappe.format(doc.invoice_date or doc.creation, {"fieldtype": "Date"}) }}</p>
+                <p><strong>Status:</strong> {{ doc.status }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="parties">
+        <div class="party-box">
+            <h3>Bill From (Freelancer)</h3>
+            <p><strong>{{ doc.freelancer_name }}</strong></p>
+            {% if doc.freelancer %}
+            {% set freelancer = frappe.get_doc("Freelancer", doc.freelancer) %}
+            <p>{{ freelancer.address_line_1 or "" }}</p>
+            <p>{{ freelancer.city or "" }}{% if freelancer.postal_code %}, {{ freelancer.postal_code }}{% endif %}</p>
+            <p>{{ freelancer.residency_country or "" }}</p>
+            {% if freelancer.vat_registered and freelancer.vat_number %}
+            <p><strong>VAT No:</strong> {{ freelancer.vat_number }}</p>
+            {% endif %}
+            {% endif %}
+        </div>
+        <div class="party-box">
+            <h3>Bill To (Company)</h3>
+            <p><strong>{{ doc.company }}</strong></p>
+            {% set company = frappe.get_doc("Company", doc.company) %}
+            {% if company.address %}
+            <p>{{ company.address }}</p>
+            {% endif %}
+            {% if company.tax_id %}
+            <p><strong>VAT No:</strong> {{ company.tax_id }}</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if doc.contract %}
+    <p><strong>Contract Reference:</strong> {{ doc.contract }}</p>
+    {% endif %}
+    
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th style="width: 50%">Description</th>
+                <th style="width: 15%">Quantity</th>
+                <th style="width: 15%">Rate</th>
+                <th style="width: 20%" class="amount">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if doc.payment_items %}
+            {% for item in doc.payment_items %}
+            <tr>
+                <td>{{ item.item_description }}</td>
+                <td>{{ item.quantity }} {{ item.uom }}</td>
+                <td>{{ frappe.format(item.rate, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+                <td class="amount">{{ frappe.format(item.amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>Professional Services</td>
+                <td>1</td>
+                <td>{{ frappe.format(doc.base_amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+                <td class="amount">{{ frappe.format(doc.base_amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% endif %}
+            
+            {% if doc.expense_reimbursements %}
+            {% for expense in doc.expense_reimbursements %}
+            {% if expense.approved %}
+            <tr>
+                <td>Expense: {{ expense.expense_description }}</td>
+                <td>1</td>
+                <td>{{ frappe.format(expense.amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+                <td class="amount">{{ frappe.format(expense.amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    
+    <div class="totals">
+        <table>
+            <tr>
+                <td class="label">Subtotal:</td>
+                <td class="value">{{ frappe.format(doc.base_amount + (doc.total_expenses or 0), {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% if doc.vat_amount and doc.vat_amount > 0 %}
+            <tr>
+                <td class="label">VAT ({{ doc.vat_rate }}%):</td>
+                <td class="value">{{ frappe.format(doc.vat_amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% endif %}
+            {% if doc.apply_reverse_charge %}
+            <tr>
+                <td class="label">VAT (Reverse Charge):</td>
+                <td class="value">€ 0.00</td>
+            </tr>
+            {% endif %}
+            {% if doc.withholding_tax_amount and doc.withholding_tax_amount > 0 %}
+            <tr>
+                <td class="label">Withholding Tax ({{ doc.withholding_rate }}%):</td>
+                <td class="value" style="color: red;">-{{ frappe.format(doc.withholding_tax_amount, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+            {% endif %}
+            <tr class="grand-total">
+                <td class="label" style="padding: 12px;">NET PAYABLE:</td>
+                <td class="value" style="padding: 12px; font-size: 18px;">{{ frappe.format(doc.net_payable, {"fieldtype": "Currency", "options": doc.currency}) }}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div style="clear: both;"></div>
+    
+    {% if doc.apply_reverse_charge %}
+    <div class="reverse-charge-notice">
+        <h4>⚠️ Reverse Charge</h4>
+        <p>This invoice is subject to the reverse charge mechanism under EU VAT Directive Article 196. 
+        The recipient is liable to account for VAT on this transaction.</p>
+        <p>VAT amount: The recipient must self-assess VAT at the applicable rate in their country.</p>
+    </div>
+    {% endif %}
+    
+    <div class="payment-info">
+        <h3>Payment Details</h3>
+        {% if doc.bank_account_name %}
+        <p><strong>Account Holder:</strong> {{ doc.bank_account_name }}</p>
+        {% endif %}
+        {% if doc.iban %}
+        <p><strong>IBAN:</strong> {{ doc.iban }}</p>
+        {% endif %}
+        {% if doc.bic_swift %}
+        <p><strong>BIC/SWIFT:</strong> {{ doc.bic_swift }}</p>
+        {% endif %}
+        <p><strong>Payment Terms:</strong> {{ doc.payment_terms or "Net 30 days" }}</p>
+        {% if doc.due_date %}
+        <p><strong>Due Date:</strong> {{ frappe.format(doc.due_date, {"fieldtype": "Date"}) }}</p>
+        {% endif %}
+        <p><strong>Payment Reference:</strong> {{ doc.name }}</p>
+    </div>
+    
+    {% if doc.notes %}
+    <div style="margin-top: 20px;">
+        <h4>Notes</h4>
+        <p>{{ doc.notes }}</p>
+    </div>
+    {% endif %}
+    
+    <div class="footer">
+        <p>This invoice was generated by HRMS Freelancer Management System.</p>
+        <p>For questions about this invoice, please contact your account manager.</p>
+    </div>
+</div>
+{% endraw %}

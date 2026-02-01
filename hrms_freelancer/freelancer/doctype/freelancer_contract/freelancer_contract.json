@@ -1,0 +1,616 @@
+{
+    "name": "Freelancer Contract",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 1,
+    "istable": 0,
+    "editable_grid": 1,
+    "track_changes": 1,
+    "track_views": 1,
+    "engine": "InnoDB",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "naming_rule": "Expression (old style)",
+    "autoname": "naming_series:",
+    "title_field": "title",
+    "search_fields": "freelancer_name, title, project_name",
+    "show_title_field_in_link": 1,
+    "allow_rename": 0,
+    "allow_copy": 1,
+    "allow_import": 1,
+    "allow_events_in_timeline": 1,
+    "document_type": "Document",
+    "icon": "fa fa-file-contract",
+    "max_attachments": 20,
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "import": 1,
+            "export": 1,
+            "share": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1
+        },
+        {
+            "role": "Contractor Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 0,
+            "amend": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1
+        },
+        {
+            "role": "Freelancer",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "if_owner": 0
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "HR-CTR-.YYYY.-\nCTR-.YYYY.-.#####",
+            "default": "HR-CTR-.YYYY.-",
+            "reqd": 0,
+            "set_only_once": 1
+        },
+        {
+            "fieldname": "section_basic",
+            "fieldtype": "Section Break",
+            "label": "Contract Details"
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "label": "Contract Title",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "freelancer",
+            "fieldtype": "Link",
+            "label": "Freelancer",
+            "options": "Freelancer",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "freelancer_name",
+            "fieldtype": "Data",
+            "label": "Freelancer Name",
+            "fetch_from": "freelancer.full_name",
+            "read_only": 1
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Link",
+            "label": "Company",
+            "options": "Company",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "project_name",
+            "fieldtype": "Data",
+            "label": "Project Name"
+        },
+        {
+            "fieldname": "project",
+            "fieldtype": "Link",
+            "label": "Project",
+            "options": "Project",
+            "description": "Link to ERPNext Project if applicable"
+        },
+        {
+            "fieldname": "department",
+            "fieldtype": "Link",
+            "label": "Department",
+            "options": "Department"
+        },
+        {
+            "fieldname": "contract_manager",
+            "fieldtype": "Link",
+            "label": "Contract Manager",
+            "options": "Employee"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nPending Approval\nActive\nOn Hold\nCompleted\nTerminated\nExpired\nCancelled",
+            "default": "Draft",
+            "reqd": 1,
+            "in_standard_filter": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "section_dates",
+            "fieldtype": "Section Break",
+            "label": "Contract Period"
+        },
+        {
+            "fieldname": "contract_type",
+            "fieldtype": "Select",
+            "label": "Contract Type",
+            "options": "Fixed-Term\nOpen-Ended\nProject-Based\nRetainer\nCall-Off",
+            "reqd": 1,
+            "default": "Fixed-Term"
+        },
+        {
+            "fieldname": "start_date",
+            "fieldtype": "Date",
+            "label": "Start Date",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "end_date",
+            "fieldtype": "Date",
+            "label": "End Date",
+            "mandatory_depends_on": "eval:doc.contract_type == 'Fixed-Term' || doc.contract_type == 'Project-Based'"
+        },
+        {
+            "fieldname": "column_break_dates",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "auto_renew",
+            "fieldtype": "Check",
+            "label": "Auto Renew",
+            "description": "Automatically renew contract at end date"
+        },
+        {
+            "fieldname": "renewal_period_months",
+            "fieldtype": "Int",
+            "label": "Renewal Period (Months)",
+            "depends_on": "auto_renew",
+            "default": 12
+        },
+        {
+            "fieldname": "notice_period_days",
+            "fieldtype": "Int",
+            "label": "Notice Period (Days)",
+            "default": 30,
+            "description": "Days notice required for termination"
+        },
+        {
+            "fieldname": "termination_date",
+            "fieldtype": "Date",
+            "label": "Termination Date",
+            "read_only": 1,
+            "depends_on": "eval:doc.status == 'Terminated'"
+        },
+        {
+            "fieldname": "section_commercial",
+            "fieldtype": "Section Break",
+            "label": "Commercial Terms"
+        },
+        {
+            "fieldname": "billing_type",
+            "fieldtype": "Select",
+            "label": "Billing Type",
+            "options": "Hourly\nDaily\nWeekly\nMonthly\nProject-Based\nMilestone-Based",
+            "reqd": 1,
+            "fetch_from": "freelancer.billing_type"
+        },
+        {
+            "fieldname": "rate",
+            "fieldtype": "Currency",
+            "label": "Rate",
+            "options": "currency",
+            "reqd": 1,
+            "fetch_from": "freelancer.rate"
+        },
+        {
+            "fieldname": "currency",
+            "fieldtype": "Link",
+            "label": "Currency",
+            "options": "Currency",
+            "reqd": 1,
+            "default": "EUR",
+            "fetch_from": "freelancer.currency"
+        },
+        {
+            "fieldname": "column_break_commercial",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "estimated_hours",
+            "fieldtype": "Float",
+            "label": "Estimated Hours",
+            "precision": 2,
+            "depends_on": "eval:doc.billing_type == 'Hourly'"
+        },
+        {
+            "fieldname": "estimated_days",
+            "fieldtype": "Int",
+            "label": "Estimated Days",
+            "depends_on": "eval:doc.billing_type == 'Daily'"
+        },
+        {
+            "fieldname": "total_value",
+            "fieldtype": "Currency",
+            "label": "Total Contract Value",
+            "options": "currency",
+            "read_only": 1,
+            "bold": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "maximum_value",
+            "fieldtype": "Currency",
+            "label": "Maximum Contract Value",
+            "options": "currency",
+            "description": "Cap on total payments (for open-ended contracts)"
+        },
+        {
+            "fieldname": "section_payment",
+            "fieldtype": "Section Break",
+            "label": "Payment Terms"
+        },
+        {
+            "fieldname": "payment_terms",
+            "fieldtype": "Link",
+            "label": "Payment Terms",
+            "options": "Payment Terms Template"
+        },
+        {
+            "fieldname": "payment_frequency",
+            "fieldtype": "Select",
+            "label": "Payment Frequency",
+            "options": "Weekly\nBi-Weekly\nMonthly\nOn Completion\nMilestone-Based",
+            "default": "Monthly"
+        },
+        {
+            "fieldname": "invoice_required",
+            "fieldtype": "Check",
+            "label": "Invoice Required",
+            "default": 1,
+            "description": "Freelancer must submit invoice for payment"
+        },
+        {
+            "fieldname": "column_break_payment",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "expense_reimbursement",
+            "fieldtype": "Check",
+            "label": "Expense Reimbursement Allowed",
+            "default": 0
+        },
+        {
+            "fieldname": "expense_limit",
+            "fieldtype": "Currency",
+            "label": "Monthly Expense Limit",
+            "options": "currency",
+            "depends_on": "expense_reimbursement"
+        },
+        {
+            "fieldname": "expense_approval_required",
+            "fieldtype": "Check",
+            "label": "Expense Pre-Approval Required",
+            "depends_on": "expense_reimbursement",
+            "default": 1
+        },
+        {
+            "fieldname": "section_tax",
+            "fieldtype": "Section Break",
+            "label": "Tax & Compliance"
+        },
+        {
+            "fieldname": "withholding_tax_applicable",
+            "fieldtype": "Check",
+            "label": "Withholding Tax Applicable",
+            "fetch_from": "freelancer.withholding_tax_rate",
+            "fetch_if_empty": 1
+        },
+        {
+            "fieldname": "withholding_tax_rate",
+            "fieldtype": "Percent",
+            "label": "Withholding Tax Rate",
+            "depends_on": "withholding_tax_applicable",
+            "fetch_from": "freelancer.withholding_tax_rate"
+        },
+        {
+            "fieldname": "vat_applicable",
+            "fieldtype": "Check",
+            "label": "VAT Applicable",
+            "fetch_from": "freelancer.vat_registered"
+        },
+        {
+            "fieldname": "vat_rate",
+            "fieldtype": "Percent",
+            "label": "VAT Rate",
+            "depends_on": "vat_applicable",
+            "fetch_from": "freelancer.vat_rate"
+        },
+        {
+            "fieldname": "column_break_tax",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "reverse_charge",
+            "fieldtype": "Check",
+            "label": "Reverse Charge (EU)",
+            "description": "VAT reverse charge mechanism for EU B2B services",
+            "fetch_from": "freelancer.reverse_charge_applicable"
+        },
+        {
+            "fieldname": "tax_treaty",
+            "fieldtype": "Link",
+            "label": "Tax Treaty",
+            "options": "Tax Treaty",
+            "fetch_from": "freelancer.tax_treaty_applicable"
+        },
+        {
+            "fieldname": "compliance_notes",
+            "fieldtype": "Small Text",
+            "label": "Compliance Notes"
+        },
+        {
+            "fieldname": "section_milestones",
+            "fieldtype": "Section Break",
+            "label": "Milestones & Deliverables",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "milestones",
+            "fieldtype": "Table",
+            "label": "Milestones",
+            "options": "Freelancer Contract Milestone"
+        },
+        {
+            "fieldname": "section_scope",
+            "fieldtype": "Section Break",
+            "label": "Scope of Work"
+        },
+        {
+            "fieldname": "scope_of_work",
+            "fieldtype": "Text Editor",
+            "label": "Scope of Work",
+            "description": "Detailed description of work to be performed"
+        },
+        {
+            "fieldname": "deliverables",
+            "fieldtype": "Text Editor",
+            "label": "Deliverables",
+            "description": "Expected outputs and deliverables"
+        },
+        {
+            "fieldname": "section_terms",
+            "fieldtype": "Section Break",
+            "label": "Terms & Conditions",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "terms_and_conditions",
+            "fieldtype": "Text Editor",
+            "label": "Terms and Conditions"
+        },
+        {
+            "fieldname": "confidentiality_clause",
+            "fieldtype": "Check",
+            "label": "Confidentiality Clause",
+            "default": 1
+        },
+        {
+            "fieldname": "non_compete_clause",
+            "fieldtype": "Check",
+            "label": "Non-Compete Clause",
+            "default": 0
+        },
+        {
+            "fieldname": "ip_ownership",
+            "fieldtype": "Select",
+            "label": "IP Ownership",
+            "options": "Company Owns All IP\nFreelancer Retains IP (License to Company)\nJoint Ownership\nAs Specified in Contract",
+            "default": "Company Owns All IP"
+        },
+        {
+            "fieldname": "section_documents",
+            "fieldtype": "Section Break",
+            "label": "Contract Documents",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "contract_document",
+            "fieldtype": "Attach",
+            "label": "Signed Contract"
+        },
+        {
+            "fieldname": "nda_document",
+            "fieldtype": "Attach",
+            "label": "NDA Document"
+        },
+        {
+            "fieldname": "sow_document",
+            "fieldtype": "Attach",
+            "label": "Statement of Work"
+        },
+        {
+            "fieldname": "column_break_documents",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "insurance_certificate",
+            "fieldtype": "Attach",
+            "label": "Insurance Certificate"
+        },
+        {
+            "fieldname": "other_documents",
+            "fieldtype": "Table",
+            "label": "Other Documents",
+            "options": "Freelancer Contract Document"
+        },
+        {
+            "fieldname": "section_tracking",
+            "fieldtype": "Section Break",
+            "label": "Tracking & Summary",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "total_invoiced",
+            "fieldtype": "Currency",
+            "label": "Total Invoiced",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "total_paid",
+            "fieldtype": "Currency",
+            "label": "Total Paid",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "outstanding_amount",
+            "fieldtype": "Currency",
+            "label": "Outstanding Amount",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_tracking",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "hours_logged",
+            "fieldtype": "Float",
+            "label": "Hours Logged",
+            "read_only": 1,
+            "precision": 2
+        },
+        {
+            "fieldname": "milestones_completed",
+            "fieldtype": "Int",
+            "label": "Milestones Completed",
+            "read_only": 1
+        },
+        {
+            "fieldname": "completion_percentage",
+            "fieldtype": "Percent",
+            "label": "Completion %",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Notes",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Internal Notes"
+        },
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "options": "Freelancer Contract",
+            "read_only": 1,
+            "no_copy": 1
+        }
+    ],
+    "links": [
+        {
+            "link_doctype": "Freelancer Payment",
+            "link_fieldname": "contract",
+            "group": "Payments"
+        },
+        {
+            "link_doctype": "Freelancer Expense",
+            "link_fieldname": "contract",
+            "group": "Expenses"
+        },
+        {
+            "link_doctype": "Freelancer Milestone",
+            "link_fieldname": "contract",
+            "group": "Milestones"
+        }
+    ],
+    "actions": [
+        {
+            "label": "Create Payment",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_contract.freelancer_contract.create_payment_from_contract"
+        },
+        {
+            "label": "Renew Contract",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_contract.freelancer_contract.renew_contract"
+        },
+        {
+            "label": "Terminate Contract",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_contract.freelancer_contract.terminate_contract"
+        }
+    ],
+    "states": [
+        {
+            "title": "Draft",
+            "color": "gray"
+        },
+        {
+            "title": "Pending Approval",
+            "color": "orange"
+        },
+        {
+            "title": "Active",
+            "color": "green"
+        },
+        {
+            "title": "On Hold",
+            "color": "yellow"
+        },
+        {
+            "title": "Completed",
+            "color": "blue"
+        },
+        {
+            "title": "Terminated",
+            "color": "red"
+        },
+        {
+            "title": "Expired",
+            "color": "gray"
+        }
+    ]
+}

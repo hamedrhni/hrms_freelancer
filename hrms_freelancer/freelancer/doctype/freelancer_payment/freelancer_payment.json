@@ -1,0 +1,651 @@
+{
+    "name": "Freelancer Payment",
+    "module": "HRMS Freelancer",
+    "doctype": "DocType",
+    "custom": 0,
+    "is_submittable": 1,
+    "istable": 0,
+    "editable_grid": 1,
+    "track_changes": 1,
+    "track_views": 1,
+    "engine": "InnoDB",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "naming_rule": "Expression (old style)",
+    "autoname": "naming_series:",
+    "title_field": "title",
+    "search_fields": "freelancer_name, invoice_number",
+    "show_title_field_in_link": 1,
+    "allow_rename": 0,
+    "allow_copy": 0,
+    "allow_import": 1,
+    "document_type": "Document",
+    "icon": "fa fa-file-invoice-dollar",
+    "max_attachments": 10,
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "import": 1,
+            "export": 1,
+            "share": 1
+        },
+        {
+            "role": "HR Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 1,
+            "amend": 1,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1
+        },
+        {
+            "role": "Freelancer Accountant",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 1,
+            "cancel": 0,
+            "amend": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1
+        },
+        {
+            "role": "Contractor Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1
+        },
+        {
+            "role": "Freelancer",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "print": 1,
+            "if_owner": 0
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "naming_series",
+            "fieldtype": "Select",
+            "label": "Naming Series",
+            "options": "HR-PAY-.YYYY.-\nFRL-PAY-.YYYY.-.#####",
+            "default": "HR-PAY-.YYYY.-",
+            "reqd": 0,
+            "set_only_once": 1
+        },
+        {
+            "fieldname": "section_basic",
+            "fieldtype": "Section Break",
+            "label": "Payment Details"
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "label": "Title",
+            "read_only": 1
+        },
+        {
+            "fieldname": "freelancer",
+            "fieldtype": "Link",
+            "label": "Freelancer",
+            "options": "Freelancer",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "freelancer_name",
+            "fieldtype": "Data",
+            "label": "Freelancer Name",
+            "fetch_from": "freelancer.full_name",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Link",
+            "label": "Company",
+            "options": "Company",
+            "reqd": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "contract",
+            "fieldtype": "Link",
+            "label": "Contract",
+            "options": "Freelancer Contract",
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "posting_date",
+            "fieldtype": "Date",
+            "label": "Posting Date",
+            "reqd": 1,
+            "default": "Today",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "payment_period_start",
+            "fieldtype": "Date",
+            "label": "Period Start"
+        },
+        {
+            "fieldname": "payment_period_end",
+            "fieldtype": "Date",
+            "label": "Period End"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nPending Approval\nApproved\nInvoice Received\nProcessing\nPaid\nRejected\nCancelled",
+            "default": "Draft",
+            "reqd": 1,
+            "in_standard_filter": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "section_invoice",
+            "fieldtype": "Section Break",
+            "label": "Invoice Information"
+        },
+        {
+            "fieldname": "invoice_number",
+            "fieldtype": "Data",
+            "label": "Freelancer Invoice Number",
+            "description": "Invoice number from freelancer"
+        },
+        {
+            "fieldname": "invoice_date",
+            "fieldtype": "Date",
+            "label": "Invoice Date"
+        },
+        {
+            "fieldname": "invoice_attachment",
+            "fieldtype": "Attach",
+            "label": "Invoice Attachment"
+        },
+        {
+            "fieldname": "column_break_invoice",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "erp_invoice",
+            "fieldtype": "Link",
+            "label": "ERPNext Purchase Invoice",
+            "options": "Purchase Invoice",
+            "read_only": 1,
+            "description": "Auto-created purchase invoice"
+        },
+        {
+            "fieldname": "journal_entry",
+            "fieldtype": "Link",
+            "label": "Journal Entry",
+            "options": "Journal Entry",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_billing",
+            "fieldtype": "Section Break",
+            "label": "Billing Details"
+        },
+        {
+            "fieldname": "billing_type",
+            "fieldtype": "Select",
+            "label": "Billing Type",
+            "options": "Hourly\nDaily\nWeekly\nMonthly\nProject-Based\nMilestone-Based",
+            "reqd": 1,
+            "fetch_from": "freelancer.billing_type"
+        },
+        {
+            "fieldname": "rate",
+            "fieldtype": "Currency",
+            "label": "Rate",
+            "options": "currency",
+            "reqd": 1,
+            "fetch_from": "freelancer.rate"
+        },
+        {
+            "fieldname": "quantity",
+            "fieldtype": "Float",
+            "label": "Quantity",
+            "precision": 2,
+            "reqd": 1,
+            "default": 1,
+            "description": "Hours/Days/Units depending on billing type"
+        },
+        {
+            "fieldname": "currency",
+            "fieldtype": "Link",
+            "label": "Currency",
+            "options": "Currency",
+            "reqd": 1,
+            "default": "EUR",
+            "fetch_from": "freelancer.currency"
+        },
+        {
+            "fieldname": "column_break_billing",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "base_amount",
+            "fieldtype": "Currency",
+            "label": "Base Amount",
+            "options": "currency",
+            "read_only": 1,
+            "description": "Rate × Quantity"
+        },
+        {
+            "fieldname": "exchange_rate",
+            "fieldtype": "Float",
+            "label": "Exchange Rate",
+            "precision": 6,
+            "default": 1,
+            "description": "Exchange rate to company currency"
+        },
+        {
+            "fieldname": "base_amount_company_currency",
+            "fieldtype": "Currency",
+            "label": "Base Amount (Company Currency)",
+            "options": "Company:company:default_currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_line_items",
+            "fieldtype": "Section Break",
+            "label": "Line Items",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "payment_items",
+            "fieldtype": "Table",
+            "label": "Payment Items",
+            "options": "Freelancer Payment Item"
+        },
+        {
+            "fieldname": "section_milestones",
+            "fieldtype": "Section Break",
+            "label": "Milestones",
+            "collapsible": 1,
+            "depends_on": "eval:doc.billing_type == 'Milestone-Based'"
+        },
+        {
+            "fieldname": "milestones",
+            "fieldtype": "Table",
+            "label": "Completed Milestones",
+            "options": "Freelancer Payment Milestone"
+        },
+        {
+            "fieldname": "section_expenses",
+            "fieldtype": "Section Break",
+            "label": "Expense Reimbursements",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "expense_reimbursements",
+            "fieldtype": "Table",
+            "label": "Expenses",
+            "options": "Freelancer Payment Expense"
+        },
+        {
+            "fieldname": "total_expenses",
+            "fieldtype": "Currency",
+            "label": "Total Expenses",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_deductions",
+            "fieldtype": "Section Break",
+            "label": "Taxes & Deductions"
+        },
+        {
+            "fieldname": "gross_amount",
+            "fieldtype": "Currency",
+            "label": "Gross Amount",
+            "options": "currency",
+            "read_only": 1,
+            "bold": 1,
+            "in_list_view": 1,
+            "description": "Base Amount + Expenses"
+        },
+        {
+            "fieldname": "vat_applicable",
+            "fieldtype": "Check",
+            "label": "VAT Applicable",
+            "fetch_from": "freelancer.vat_registered"
+        },
+        {
+            "fieldname": "vat_rate",
+            "fieldtype": "Percent",
+            "label": "VAT Rate",
+            "depends_on": "vat_applicable",
+            "fetch_from": "freelancer.vat_rate"
+        },
+        {
+            "fieldname": "vat_amount",
+            "fieldtype": "Currency",
+            "label": "VAT Amount",
+            "options": "currency",
+            "read_only": 1,
+            "depends_on": "vat_applicable"
+        },
+        {
+            "fieldname": "column_break_deductions",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "reverse_charge",
+            "fieldtype": "Check",
+            "label": "Reverse Charge (EU)",
+            "description": "VAT reverse charge mechanism - VAT is 0% and shifted to recipient",
+            "fetch_from": "freelancer.reverse_charge_applicable"
+        },
+        {
+            "fieldname": "withholding_tax_applicable",
+            "fieldtype": "Check",
+            "label": "Withholding Tax Applicable"
+        },
+        {
+            "fieldname": "withholding_tax_rate",
+            "fieldtype": "Percent",
+            "label": "Withholding Tax Rate",
+            "depends_on": "withholding_tax_applicable",
+            "fetch_from": "freelancer.withholding_tax_rate"
+        },
+        {
+            "fieldname": "withholding_tax_amount",
+            "fieldtype": "Currency",
+            "label": "Withholding Tax Amount",
+            "options": "currency",
+            "read_only": 1,
+            "depends_on": "withholding_tax_applicable"
+        },
+        {
+            "fieldname": "tax_treaty",
+            "fieldtype": "Link",
+            "label": "Tax Treaty Applied",
+            "options": "Tax Treaty",
+            "fetch_from": "freelancer.tax_treaty_applicable"
+        },
+        {
+            "fieldname": "section_totals",
+            "fieldtype": "Section Break",
+            "label": "Payment Summary"
+        },
+        {
+            "fieldname": "gross_with_vat",
+            "fieldtype": "Currency",
+            "label": "Gross Amount (incl. VAT)",
+            "options": "currency",
+            "read_only": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "total_deductions",
+            "fieldtype": "Currency",
+            "label": "Total Deductions",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_totals",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "net_amount",
+            "fieldtype": "Currency",
+            "label": "Net Payable Amount",
+            "options": "currency",
+            "read_only": 1,
+            "bold": 1,
+            "in_list_view": 1,
+            "description": "Gross - Withholding Tax (VAT paid separately if applicable)"
+        },
+        {
+            "fieldname": "net_amount_company_currency",
+            "fieldtype": "Currency",
+            "label": "Net Amount (Company Currency)",
+            "options": "Company:company:default_currency",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_payment_info",
+            "fieldtype": "Section Break",
+            "label": "Payment Information"
+        },
+        {
+            "fieldname": "payment_method",
+            "fieldtype": "Select",
+            "label": "Payment Method",
+            "options": "\nBank Transfer\nPayPal\nWise (TransferWise)\nPayoneer\nStripe\nCheque\nOther",
+            "default": "Bank Transfer"
+        },
+        {
+            "fieldname": "bank_account",
+            "fieldtype": "Data",
+            "label": "Bank Account / IBAN",
+            "fetch_from": "freelancer.bank_account",
+            "read_only": 1
+        },
+        {
+            "fieldname": "bank_name",
+            "fieldtype": "Data",
+            "label": "Bank Name",
+            "fetch_from": "freelancer.bank_name",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_payment_info",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "due_date",
+            "fieldtype": "Date",
+            "label": "Payment Due Date"
+        },
+        {
+            "fieldname": "payment_date",
+            "fieldtype": "Date",
+            "label": "Actual Payment Date"
+        },
+        {
+            "fieldname": "payment_reference",
+            "fieldtype": "Data",
+            "label": "Payment Reference/Transaction ID"
+        },
+        {
+            "fieldname": "section_compliance",
+            "fieldtype": "Section Break",
+            "label": "Compliance & Reporting",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "residency_status",
+            "fieldtype": "Data",
+            "label": "Freelancer Residency",
+            "fetch_from": "freelancer.residency_status",
+            "read_only": 1
+        },
+        {
+            "fieldname": "tax_residency_country",
+            "fieldtype": "Link",
+            "label": "Tax Residency Country",
+            "options": "Country",
+            "fetch_from": "freelancer.tax_residency_country",
+            "read_only": 1
+        },
+        {
+            "fieldname": "is_eu_freelancer",
+            "fieldtype": "Check",
+            "label": "Is EU Freelancer",
+            "fetch_from": "freelancer.is_eu_country",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_compliance",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "form_1099_applicable",
+            "fieldtype": "Check",
+            "label": "1099 Reporting (US)",
+            "description": "Applicable for US contractors receiving $600+"
+        },
+        {
+            "fieldname": "tax_certificate_on_file",
+            "fieldtype": "Check",
+            "label": "Tax Certificate on File",
+            "fetch_from": "freelancer.tax_certificate",
+            "read_only": 1
+        },
+        {
+            "fieldname": "compliance_notes",
+            "fieldtype": "Small Text",
+            "label": "Compliance Notes"
+        },
+        {
+            "fieldname": "section_approval",
+            "fieldtype": "Section Break",
+            "label": "Approval",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "approved_by",
+            "fieldtype": "Link",
+            "label": "Approved By",
+            "options": "User",
+            "read_only": 1
+        },
+        {
+            "fieldname": "approval_date",
+            "fieldtype": "Datetime",
+            "label": "Approval Date",
+            "read_only": 1
+        },
+        {
+            "fieldname": "rejection_reason",
+            "fieldtype": "Small Text",
+            "label": "Rejection Reason",
+            "depends_on": "eval:doc.status == 'Rejected'"
+        },
+        {
+            "fieldname": "section_notes",
+            "fieldtype": "Section Break",
+            "label": "Notes",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Text Editor",
+            "label": "Payment Description"
+        },
+        {
+            "fieldname": "internal_notes",
+            "fieldtype": "Text Editor",
+            "label": "Internal Notes"
+        },
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "options": "Freelancer Payment",
+            "read_only": 1,
+            "no_copy": 1
+        }
+    ],
+    "links": [
+        {
+            "link_doctype": "Purchase Invoice",
+            "link_fieldname": "name",
+            "group": "Accounting"
+        },
+        {
+            "link_doctype": "Journal Entry",
+            "link_fieldname": "name",
+            "group": "Accounting"
+        }
+    ],
+    "actions": [
+        {
+            "label": "Approve Payment",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_payment.freelancer_payment.approve_payment"
+        },
+        {
+            "label": "Create Purchase Invoice",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_payment.freelancer_payment.create_purchase_invoice"
+        },
+        {
+            "label": "Mark as Paid",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_payment.freelancer_payment.mark_as_paid"
+        },
+        {
+            "label": "Export PDF Invoice",
+            "action_type": "Server Action",
+            "action": "hrms_freelancer.freelancer.doctype.freelancer_payment.freelancer_payment.export_pdf"
+        }
+    ],
+    "states": [
+        {
+            "title": "Draft",
+            "color": "gray"
+        },
+        {
+            "title": "Pending Approval",
+            "color": "orange"
+        },
+        {
+            "title": "Approved",
+            "color": "blue"
+        },
+        {
+            "title": "Invoice Received",
+            "color": "purple"
+        },
+        {
+            "title": "Processing",
+            "color": "yellow"
+        },
+        {
+            "title": "Paid",
+            "color": "green"
+        },
+        {
+            "title": "Rejected",
+            "color": "red"
+        }
+    ]
+}

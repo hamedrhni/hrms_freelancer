@@ -1,0 +1,113 @@
+{
+  "actions": [],
+  "creation": "2024-01-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "item_description",
+    "service_type",
+    "column_break_1",
+    "quantity",
+    "uom",
+    "rate",
+    "amount",
+    "section_break_2",
+    "milestone_reference",
+    "deliverable_date",
+    "column_break_3",
+    "tax_category",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "item_description",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Description",
+      "reqd": 1
+    },
+    {
+      "fieldname": "service_type",
+      "fieldtype": "Select",
+      "label": "Service Type",
+      "options": "Professional Services\nConsulting\nDevelopment\nDesign\nWriting\nTraining\nSupport\nOther"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Quantity",
+      "default": "1",
+      "precision": "2"
+    },
+    {
+      "fieldname": "uom",
+      "fieldtype": "Select",
+      "label": "UOM",
+      "options": "Hour\nDay\nWeek\nMonth\nUnit\nProject\nMilestone",
+      "default": "Hour"
+    },
+    {
+      "fieldname": "rate",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Rate",
+      "options": "currency"
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Amount",
+      "options": "currency",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Reference"
+    },
+    {
+      "fieldname": "milestone_reference",
+      "fieldtype": "Data",
+      "label": "Milestone Reference"
+    },
+    {
+      "fieldname": "deliverable_date",
+      "fieldtype": "Date",
+      "label": "Deliverable Date"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "tax_category",
+      "fieldtype": "Select",
+      "label": "Tax Category",
+      "options": "Standard\nReduced\nZero Rated\nExempt"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2024-01-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Freelancer",
+  "name": "Freelancer Payment Item",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

@@ -1,0 +1,95 @@
+{
+  "actions": [],
+  "creation": "2024-01-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "skill_name",
+    "skill_category",
+    "column_break_1",
+    "proficiency_level",
+    "years_experience",
+    "section_break_2",
+    "certified",
+    "certification_name",
+    "certification_date",
+    "column_break_3",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "skill_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Skill Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "skill_category",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Category",
+      "options": "Technical\nBusiness\nDesign\nMarketing\nLanguage\nManagement\nOther"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "proficiency_level",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Proficiency Level",
+      "options": "Beginner\nIntermediate\nAdvanced\nExpert"
+    },
+    {
+      "fieldname": "years_experience",
+      "fieldtype": "Int",
+      "label": "Years of Experience"
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Certification"
+    },
+    {
+      "fieldname": "certified",
+      "fieldtype": "Check",
+      "label": "Certified"
+    },
+    {
+      "fieldname": "certification_name",
+      "fieldtype": "Data",
+      "depends_on": "certified",
+      "label": "Certification Name"
+    },
+    {
+      "fieldname": "certification_date",
+      "fieldtype": "Date",
+      "depends_on": "certified",
+      "label": "Certification Date"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2024-01-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "HRMS Freelancer",
+  "name": "Freelancer Skill",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

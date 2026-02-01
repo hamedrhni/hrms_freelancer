@@ -1,0 +1,23 @@
+{
+    "creation": "2026-01-01 00:00:00.000000",
+    "docstatus": 0,
+    "doctype": "Installed Applications",
+    "modified": "2026-01-31 00:00:00.000000",
+    "modified_by": "Administrator",
+    "module_name": "HRMS Freelancer",
+    "app_name": "hrms_freelancer",
+    "app_version": "1.0.0",
+    "app_title": "HRMS Freelancer Extension",
+    "app_description": "Freelancer and Contractor Management Extension for Frappe HRMS",
+    "app_publisher": "HR Platform Team",
+    "app_email": "support@hrplatform.example.com",
+    "app_icon": "octicon octicon-briefcase",
+    "app_color": "#3498db",
+    "app_license": "MIT",
+    "required_apps": [
+        "frappe",
+        "erpnext",
+        "hrms"
+    ],
+    "hide_login": 0
+}

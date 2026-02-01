@@ -1,0 +1,102 @@
+{
+  "actions": [],
+  "creation": "2024-01-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "document_name",
+    "document_type",
+    "column_break_1",
+    "attached_file",
+    "upload_date",
+    "expiry_date",
+    "section_break_2",
+    "verified",
+    "verified_by",
+    "verification_date",
+    "column_break_3",
+    "notes"
+  ],
+  "fields": [
+    {
+      "fieldname": "document_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Document Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "document_type",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Document Type",
+      "options": "Tax Certificate\nID Document\nResidence Permit\nWork Permit\nVAT Certificate\nInsurance Certificate\nProfessional License\nQualification\nBank Details\nContract Amendment\nNDA\nOther"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "attached_file",
+      "fieldtype": "Attach",
+      "in_list_view": 1,
+      "label": "File"
+    },
+    {
+      "fieldname": "upload_date",
+      "fieldtype": "Date",
+      "label": "Upload Date",
+      "default": "Today"
+    },
+    {
+      "fieldname": "expiry_date",
+      "fieldtype": "Date",
+      "label": "Expiry Date"
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Verification"
+    },
+    {
+      "fieldname": "verified",
+      "fieldtype": "Check",
+      "label": "Verified"
+    },
+    {
+      "fieldname": "verified_by",
+      "fieldtype": "Link",
+      "depends_on": "verified",
+      "label": "Verified By",
+      "options": "User"
+    },
+    {
+      "fieldname": "verification_date",
+      "fieldtype": "Date",
+      "depends_on": "verified",
+      "label": "Verification Date"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2024-01-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Freelancer",
+  "name": "Freelancer Document",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

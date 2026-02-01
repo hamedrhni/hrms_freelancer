@@ -1,0 +1,127 @@
+{
+  "actions": [],
+  "creation": "2024-01-01 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "milestone_name",
+    "description",
+    "column_break_1",
+    "expected_completion_date",
+    "actual_completion_date",
+    "status",
+    "section_break_2",
+    "deliverables",
+    "acceptance_criteria",
+    "column_break_3",
+    "amount",
+    "percentage_of_contract",
+    "payment_trigger",
+    "section_break_4",
+    "notes",
+    "attachments"
+  ],
+  "fields": [
+    {
+      "fieldname": "milestone_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Milestone Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "expected_completion_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Expected Completion"
+    },
+    {
+      "fieldname": "actual_completion_date",
+      "fieldtype": "Date",
+      "label": "Actual Completion"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Status",
+      "options": "Pending\nIn Progress\nCompleted\nApproved\nRejected\nDeferred",
+      "default": "Pending"
+    },
+    {
+      "fieldname": "section_break_2",
+      "fieldtype": "Section Break",
+      "label": "Requirements"
+    },
+    {
+      "fieldname": "deliverables",
+      "fieldtype": "Text",
+      "label": "Deliverables"
+    },
+    {
+      "fieldname": "acceptance_criteria",
+      "fieldtype": "Text",
+      "label": "Acceptance Criteria"
+    },
+    {
+      "fieldname": "column_break_3",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Amount",
+      "options": "currency"
+    },
+    {
+      "fieldname": "percentage_of_contract",
+      "fieldtype": "Percent",
+      "label": "% of Contract Value"
+    },
+    {
+      "fieldname": "payment_trigger",
+      "fieldtype": "Select",
+      "label": "Payment Trigger",
+      "options": "On Completion\nOn Approval\nWith Final Payment\nUpfront\nCustom",
+      "default": "On Approval"
+    },
+    {
+      "fieldname": "section_break_4",
+      "fieldtype": "Section Break",
+      "label": "Additional Info"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "attachments",
+      "fieldtype": "Attach",
+      "label": "Attachments"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2024-01-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Freelancer",
+  "name": "Freelancer Contract Milestone",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
